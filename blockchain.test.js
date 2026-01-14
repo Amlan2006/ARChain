@@ -31,4 +31,19 @@ describe("Start blockchai test",()=>{
         expect(bc.isValidChain(bc2.chain)).toBe(false);
 
     })
+
+   it('Replaces the chain with a valid chain', ()=>{
+    bc2.addBlock('loo');        // make bc2 longer
+    bc.replaceChain(bc2.chain); // replace bc's chain
+
+    expect(bc.chain).toEqual(bc2.chain);
+});
+
+
+    it('does not replace thechain with one of the less than or equal to length',()=>{
+        bc.addBlock('foo');
+        bc.replaceChain(bc2.chain);
+
+        expect(bc.chain).not.toEqual(bc2.chain);
+    })
 })
